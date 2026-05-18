@@ -1,0 +1,107 @@
+{{/* Profile-conditional bundle. Wrap work-only items in {{ if eq .profile "work" }}...{{ end }}. */ -}}
+tap "clojure/tools"
+tap "hashicorp/tap"
+tap "shivammathur/php"
+tap "zegervdv/zathura"
+{{ if eq .profile "work" -}}
+tap "localstack/tap"
+{{- end }}
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Generate compilation database for clang tooling
+brew "bear"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# General-purpose scripting language
+brew "php"
+# Dependency Manager for PHP
+brew "composer"
+# Apjanke's fork of the classic cowsay project
+brew "cowsay"
+# Modern, maintained replacement for ls
+brew "eza"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Infamous electronic fortune-cookie generator
+brew "fortune"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Statically typed language for the Erlang VM
+brew "gleam"
+# Multi-platform library for OpenGL applications
+brew "glfw"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
+# Manage your Java environment
+brew "jenv"
+# Modern load testing tool, using Go and JavaScript
+brew "k6"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Next-gen compiler infrastructure
+brew "llvm"
+# Package manager for the Lua programming language
+brew "luarocks"
+# Fast and user friendly build system
+brew "meson"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Platform built on V8 to build network applications
+brew "node"
+# Modern shell for the GitHub era
+brew "nushell"
+# Development kit for the Java programming language
+brew "openjdk"
+# Generate clients, server & docs from an OpenAPI spec (v2, v3)
+brew "openapi-generator"
+# Theme for zsh
+brew "powerlevel10k"
+# Python version management
+brew "pyenv"
+# Persistent key-value database, with built-in net interface
+brew "redis"
+# Pack repository contents into a single AI-friendly file
+brew "repomix"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Extremely fast Python linter, written in Rust
+brew "ruff"
+# Display and control your Android device
+brew "scrcpy"
+# Terminal multiplexer
+brew "tmux"
+# Manage complex tmux sessions easily
+brew "tmuxinator"
+# Internet file retriever
+brew "wget"
+# JavaScript package manager
+brew "yarn"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
+# Pluggable terminal workspace, with terminal multiplexer as the base feature
+brew "zellij"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+# The Clojure Programming Language
+brew "clojure/tools/clojure"
+{{ if eq .profile "work" -}}
+# Localstack cli packaged using pyinstaller
+brew "localstack/tap/localstack-cli"
+{{- end }}
+# General-purpose scripting language
+brew "shivammathur/php/php@7.2"
+# PDF viewer
+brew "zegervdv/zathura/zathura"
+# Android SDK component
+cask "android-platform-tools"
+# Text editor
+cask "emacs-app"
+cask "font-fira-code"
+# Development environment
+cask "hashicorp-vagrant"

@@ -1,0 +1,13 @@
+{{/* chezmoiignore — paths chezmoi will not manage on the destination side. */ -}}
+{{/* Templated: lines below are evaluated, so conditionals work. */ -}}
+
+README.md
+LICENSE
+Brewfile
+
+{{- /* Work-only zellij layouts: skip on personal machines. */}}
+{{ if ne .profile "work" -}}
+.config/jobboard.kdl
+.config/virtualvalley.kdl
+.config/localstack.kdl
+{{- end }}

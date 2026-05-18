@@ -1,0 +1,9 @@
+layout {
+  pane {
+    nvim {args ".";};
+  }
+  pane_template name="nvim" {
+    command "nvim"
+      start_suspended false
+  }
+}

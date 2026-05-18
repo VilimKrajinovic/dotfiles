@@ -1,0 +1,16 @@
+layout {
+   pane split_direction="vertical" {
+        pane split_direction="horizontal" {
+            pnpm { args "dev:api-public"; }
+            pnpm { args "dev:scheduler"; }
+        }
+        pane split_direction="horizontal" {
+            pnpm { args "dev:site"; }
+            pnpm { args "dev:tunnel-redis"; }
+        }
+    }
+    pane_template name="pnpm" {
+        command "pnpm"
+        start_suspended false
+    }
+  }

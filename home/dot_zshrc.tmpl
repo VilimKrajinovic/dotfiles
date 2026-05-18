@@ -1,0 +1,103 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+export PATH
+
+export EDITOR='nvim'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias ll='ls -lGaf'
+alias lld="ll -d */"
+alias ls='eza -l -a'
+alias lsd='ls -d */'
+autoload -Uz compinit && compinit
+
+alias vi="nvim"
+alias vim="nvim"
+
+alias rmf="rm -rf"
+
+{{ if eq .profile "work" -}}
+zjob() {
+  zellij delete-all-sessions -y
+  zellij --layout ~/.config/jobboard.kdl
+}
+
+
+zvirtualvalley() {
+  zellij delete-all-sessions -y
+  zellij --layout ~/.config/virtualvalley.kdl
+}
+
+alias zsqs="zellij --layout ~/.config/localstack.kdl"
+{{ end -}}
+alias zvim="zellij --layout ~/.config/vim.kdl"
+
+alias get-queue="awslocal sqs get-queue-url --queue-name"
+
+eval "$(zoxide init --cmd cd zsh)"
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# zsh
+source <(fzf --zsh)
+
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/Users/vilim.krajinovic/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+#
+
+export PATH="Users/vilim.krajinovic/.local/bin/phpactor:$PATH"
+export PATH="$HOME/Library/Python/3.13/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/vilim.krajinovic/.codeium/windsurf/bin:$PATH"
+
+# Local secrets (gitignored, not in chezmoi). Paste ANTHROPIC_API_KEY etc. into ~/.config/zsh/secrets.zsh
+[[ -f ~/.config/zsh/secrets.zsh ]] && source ~/.config/zsh/secrets.zsh
+
+export VULKAN_SDK="/Users/vilim.krajinovic/VulkanSDK/1.4.304.1"
+
+# AWS
+export PATH="/usr/local/aws-cli:$PATH"
+
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PATH="$HOME/.local/bin:$PATH"
+
+
+export PATH="$HOME/personal/odin/odin-exe:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"

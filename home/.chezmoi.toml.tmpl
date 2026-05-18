@@ -1,0 +1,12 @@
+{{/* Prompts run once on `chezmoi init`. Answers persist to ~/.config/chezmoi/chezmoi.toml. */ -}}
+{{- $profile := promptStringOnce . "profile" "Profile (work|personal)" "personal" -}}
+{{- $defaultEmail := "vilim.krajinovic@gmail.com" -}}
+{{- if eq $profile "work" -}}
+{{-   $defaultEmail = "vilim.krajinovic@almamedia.com" -}}
+{{- end -}}
+{{- $email := promptStringOnce . "email" "Git email" $defaultEmail -}}
+
+[data]
+    profile = {{ $profile | quote }}
+    email   = {{ $email | quote }}
+    name    = "vilimkrajinovic"

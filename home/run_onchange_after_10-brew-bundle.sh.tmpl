@@ -1,0 +1,14 @@
+#!/bin/sh
+# Re-runs when the rendered Brewfile (below) changes.
+# Brewfile hash: {{ include "Brewfile.tmpl" | sha256sum }}
+
+set -e
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "brew not found — aborting bundle install"
+  exit 1
+fi
+
+BREWFILE="{{ .chezmoi.sourceDir }}/Brewfile.tmpl"
+echo "==> Running brew bundle install from $BREWFILE"
+brew bundle install --file="$BREWFILE" --no-lock

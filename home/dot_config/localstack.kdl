@@ -1,0 +1,10 @@
+layout {
+  pane {
+    command "zsh"
+  }
+  pane split_direction="vertical" {
+    command "zsh"
+      args "-c" "LOCALSTACK_SERVICES=sqs" "localstack start";
+  }
+}
+

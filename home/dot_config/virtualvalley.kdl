@@ -1,0 +1,14 @@
+layout {
+    pane split_direction="vertical" {
+        pane command="npm" {
+            args "run" "start"
+            cwd "/Users/vilim.krajinovic/work/VirtualValley/frontend"
+            name "webpack"
+        }
+        pane command="npm" {
+            args "run" "devServer"
+            cwd "/Users/vilim.krajinovic/work/VirtualValley/frontend"
+            name "devServer"
+        }
+    }
+}
