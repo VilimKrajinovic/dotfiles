@@ -1,6 +1,6 @@
 #!/bin/sh
-# Re-runs when the rendered Brewfile (below) changes.
-# Brewfile hash: {{ include "Brewfile.tmpl" | sha256sum }}
+# Re-runs when the rendered Brewfile content changes.
+# Hash: {{ include "Brewfile.tmpl" | sha256sum }}
 
 set -e
 
@@ -9,6 +9,11 @@ if ! command -v brew >/dev/null 2>&1; then
   exit 1
 fi
 
-BREWFILE="{{ .chezmoi.sourceDir }}/Brewfile.tmpl"
-echo "==> Running brew bundle install from $BREWFILE"
-brew bundle install --file="$BREWFILE"
+BREWFILE_TMPL="{{ .chezmoi.sourceDir }}/Brewfile.tmpl"
+RENDERED=$(mktemp -t Brewfile.XXXXXX)
+trap 'rm -f "$RENDERED"' EXIT INT TERM
+
+chezmoi execute-template < "$BREWFILE_TMPL" > "$RENDERED"
+
+echo "==> Running brew bundle install (rendered $BREWFILE_TMPL)"
+brew bundle install --file="$RENDERED"
